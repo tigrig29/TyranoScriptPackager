@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 using System.IO.Compression;
 using System.IO;
+using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
+
 
 namespace TyranoScriptPackager
 {
@@ -26,6 +29,7 @@ namespace TyranoScriptPackager
             // パッケージング処理
             TyranoPackage(projectUrl);
 
+            return;
 
             InitializeComponent();
         }
@@ -35,7 +39,7 @@ namespace TyranoScriptPackager
 
         }
 
-        public static void TyranoPackage(string projectUrl)
+        public static void TyranoPackage(string projectUrl, string name = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
         {
             // ================================================================
             // 元プロジェクトコピー処理
@@ -52,13 +56,13 @@ namespace TyranoScriptPackager
                 File.Delete(indexPath);
             }
             File.Copy(Path.Combine(projectUrl, "index.html"), indexPath);
-            // package.jsonコピー
+            // package.json作成
             string packagePath = @".\tmp\package.json";
             if (File.Exists(packagePath))
             {
                 File.Delete(packagePath);
             }
-            File.Copy(Path.Combine(projectUrl, "package.json"), packagePath);
+            CreatePackageJson(name, title, resizable, width, height, max_width, max_height, min_width, min_height);
 
 
             // ================================================================
@@ -67,7 +71,7 @@ namespace TyranoScriptPackager
             string exportName = System.Text.RegularExpressions.Regex.Replace(DateTime.Now.ToString(), @"[\/\s\:]", "_");
             string exportUrl = Path.Combine(@".\export", exportName);
             CopyAndReplace(@".\binwin", exportUrl);
-
+            
 
             // ================================================================
             // プロジェクトのZIPファイル作成
@@ -96,6 +100,40 @@ namespace TyranoScriptPackager
             Delete(@".\tmp");
             File.Delete(Path.Combine(exportUrl, "app.nw"));
             File.Delete(Path.Combine(exportUrl, "nw.exe"));
+        }
+        // package.json用のJSONデータ出力
+        public static void CreatePackageJson(string name = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
+        {
+            var dic = new
+            {
+                name = name,
+                main = "app://./index.html",
+                window = new
+                {
+                        title = title,
+                        icon = "link.png",
+                        toolbar = false,
+                        frame = true,
+                        resizable = resizable,
+                        width = width,
+                        height = height,
+                        max_width = max_width,
+                        max_height = max_height,
+                        min_width = min_width,
+                        min_height = min_height,
+                        position = "center",
+
+                },
+                webkit = new
+                {
+                    plugin = true,
+                }
+            };
+            StreamWriter sw = new StreamWriter(@".\tmp\package.json", false, System.Text.Encoding.GetEncoding("utf-8"));
+            string json = JsonConvert.SerializeObject(dic);
+            sw.Write(json);
+            sw.Close();
+
         }
         // DOSコマンドの実行
         public static void ExecuteCommand(string arguments, bool output)
@@ -166,6 +204,26 @@ namespace TyranoScriptPackager
             {
                 CopyAndReplace(dir, Path.Combine(copyPath, Path.GetFileName(dir)));
             }
+        }
+
+        private void label_min_width_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_min_height_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
