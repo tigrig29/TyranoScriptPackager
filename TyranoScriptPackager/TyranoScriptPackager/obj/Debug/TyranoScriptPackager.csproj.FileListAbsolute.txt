@@ -11,3 +11,16 @@ C:\Users\TigRig\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\Tyran
 C:\Users\TigRig\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\Newtonsoft.Json.dll
 C:\Users\TigRig\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\DotNetZip.xml
 C:\Users\TigRig\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\Newtonsoft.Json.xml
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\TyranoScriptPackager.exe.config
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Debug\TyranoScriptPackager.csprojResolveAssemblyReference.cache
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Debug\TyranoScriptPackager.Form1.resources
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Debug\TyranoScriptPackager.Properties.Resources.resources
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Debug\TyranoScriptPackager.csproj.GenerateResource.Cache
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\TyranoScriptPackager.exe
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\TyranoScriptPackager.pdb
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\DotNetZip.dll
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\Newtonsoft.Json.dll
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\DotNetZip.xml
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Debug\Newtonsoft.Json.xml
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Debug\TyranoScriptPackager.exe
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Debug\TyranoScriptPackager.pdb
