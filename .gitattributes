@@ -1,5 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-*.config linguist-vendored
-*.resx linguist-vendored
-*.csproj linguist-vendored
+TyranoScriptPackager/TyranoScriptPackager/Properties/Resources.resx linguist-vendored=false
+TyranoScriptPackager/TyranoScriptPackager/packages.config linguist-vendored=false
+TyranoScriptPackager/TyranoScriptPackager/TyranoScriptPackager.csproj linguist-vendored=false
+TyranoScriptPackager/TyranoScriptPackager/App.config linguist-vendored=false
+TyranoScriptPackager/TyranoScriptPackager/Form1.resx linguist-vendored=false
