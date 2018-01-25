@@ -1,4 +1,0 @@
-# Auto detect text files and perform LF normalization
-.resx linguist-language=C#
-.config linguist-language=C#
-.csproj linguist-language=C#
