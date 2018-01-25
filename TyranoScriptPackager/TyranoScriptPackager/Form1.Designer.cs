@@ -1,6 +1,6 @@
 ﻿namespace TyranoScriptPackager
 {
-    partial class Form1
+    partial class TyranoScriptPackager
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -28,124 +28,155 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox_project_path = new System.Windows.Forms.TextBox();
+            this.button_reference_project = new System.Windows.Forms.Button();
+            this.button_execute = new System.Windows.Forms.Button();
+            this.textBox_id = new System.Windows.Forms.TextBox();
+            this.textBox_title = new System.Windows.Forms.TextBox();
             this.label_name = new System.Windows.Forms.Label();
             this.label_title = new System.Windows.Forms.Label();
             this.label_risizable = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_resize = new System.Windows.Forms.ComboBox();
+            this.numericUpDown_width = new System.Windows.Forms.NumericUpDown();
             this.label_width = new System.Windows.Forms.Label();
             this.label_height = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_height = new System.Windows.Forms.NumericUpDown();
             this.label_max_width = new System.Windows.Forms.Label();
             this.label_max_height = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_max_width = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_max_height = new System.Windows.Forms.NumericUpDown();
             this.label_min_width = new System.Windows.Forms.Label();
             this.label_min_height = new System.Windows.Forms.Label();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_min_width = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_min_height = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            this.textBox_export_path = new System.Windows.Forms.TextBox();
+            this.button_reference_export = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_height)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max_width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max_height)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_min_width)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_min_height)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBox_project_path
             // 
-            this.textBox1.Location = new System.Drawing.Point(31, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 19);
-            this.textBox1.TabIndex = 0;
+            this.textBox_project_path.Location = new System.Drawing.Point(31, 39);
+            this.textBox_project_path.Name = "textBox_project_path";
+            this.textBox_project_path.Size = new System.Drawing.Size(291, 19);
+            this.textBox_project_path.TabIndex = 0;
+            this.textBox_project_path.Text = "C:";
+            this.textBox_project_path.TextChanged += new System.EventHandler(this.textBox_project_path_TextChanged);
             // 
-            // button1
+            // button_reference_project
             // 
-            this.button1.Location = new System.Drawing.Point(302, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_reference_project.Location = new System.Drawing.Point(328, 37);
+            this.button_reference_project.Name = "button_reference_project";
+            this.button_reference_project.Size = new System.Drawing.Size(75, 23);
+            this.button_reference_project.TabIndex = 1;
+            this.button_reference_project.Text = "参照...";
+            this.button_reference_project.UseVisualStyleBackColor = true;
+            this.button_reference_project.Click += new System.EventHandler(this.button_reference_project_Click);
             // 
-            // button2
+            // button_execute
             // 
-            this.button2.Location = new System.Drawing.Point(302, 445);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_execute.Location = new System.Drawing.Point(300, 516);
+            this.button_execute.Name = "button_execute";
+            this.button_execute.Size = new System.Drawing.Size(101, 23);
+            this.button_execute.TabIndex = 13;
+            this.button_execute.Text = "パッケージング実行";
+            this.button_execute.UseVisualStyleBackColor = true;
+            this.button_execute.Click += new System.EventHandler(this.button_execute_Click);
             // 
-            // textBox2
+            // textBox_id
             // 
-            this.textBox2.Location = new System.Drawing.Point(31, 103);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(137, 19);
-            this.textBox2.TabIndex = 0;
+            this.textBox_id.Location = new System.Drawing.Point(29, 174);
+            this.textBox_id.Name = "textBox_id";
+            this.textBox_id.Size = new System.Drawing.Size(137, 19);
+            this.textBox_id.TabIndex = 4;
+            this.textBox_id.Text = "TyranoScriptGame";
             // 
-            // textBox3
+            // textBox_title
             // 
-            this.textBox3.Location = new System.Drawing.Point(31, 153);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(137, 19);
-            this.textBox3.TabIndex = 0;
+            this.textBox_title.Location = new System.Drawing.Point(29, 224);
+            this.textBox_title.Name = "textBox_title";
+            this.textBox_title.Size = new System.Drawing.Size(137, 19);
+            this.textBox_title.TabIndex = 5;
+            this.textBox_title.Text = "loading...";
             // 
             // label_name
             // 
             this.label_name.AutoSize = true;
-            this.label_name.Location = new System.Drawing.Point(29, 88);
+            this.label_name.Location = new System.Drawing.Point(27, 159);
             this.label_name.Name = "label_name";
             this.label_name.Size = new System.Drawing.Size(46, 12);
-            this.label_name.TabIndex = 3;
+            this.label_name.TabIndex = 0;
             this.label_name.Text = "ゲームID";
             // 
             // label_title
             // 
             this.label_title.AutoSize = true;
-            this.label_title.Location = new System.Drawing.Point(29, 138);
+            this.label_title.Location = new System.Drawing.Point(27, 209);
             this.label_title.Name = "label_title";
             this.label_title.Size = new System.Drawing.Size(98, 12);
-            this.label_title.TabIndex = 3;
+            this.label_title.TabIndex = 1;
             this.label_title.Text = "読み込み時タイトル";
             // 
             // label_risizable
             // 
             this.label_risizable.AutoSize = true;
-            this.label_risizable.Location = new System.Drawing.Point(29, 190);
+            this.label_risizable.Location = new System.Drawing.Point(27, 261);
             this.label_risizable.Name = "label_risizable";
-            this.label_risizable.Size = new System.Drawing.Size(75, 12);
-            this.label_risizable.TabIndex = 3;
-            this.label_risizable.Text = "リサイズの許可";
+            this.label_risizable.Size = new System.Drawing.Size(108, 12);
+            this.label_risizable.TabIndex = 0;
+            this.label_risizable.Text = "ドラッグリサイズの許可";
             // 
-            // comboBox1
+            // comboBox_resize
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(31, 205);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(67, 20);
-            this.comboBox1.TabIndex = 4;
+            this.comboBox_resize.FormattingEnabled = true;
+            this.comboBox_resize.Items.AddRange(new object[] {
+            "True",
+            "False"});
+            this.comboBox_resize.Location = new System.Drawing.Point(29, 276);
+            this.comboBox_resize.Name = "comboBox_resize";
+            this.comboBox_resize.Size = new System.Drawing.Size(67, 20);
+            this.comboBox_resize.TabIndex = 6;
+            this.comboBox_resize.Text = "False";
             // 
-            // numericUpDown1
+            // numericUpDown_width
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(74, 268);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown1.TabIndex = 5;
+            this.numericUpDown_width.Location = new System.Drawing.Point(72, 339);
+            this.numericUpDown_width.Maximum = new decimal(new int[] {
+            3840,
+            0,
+            0,
+            0});
+            this.numericUpDown_width.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_width.Name = "numericUpDown_width";
+            this.numericUpDown_width.Size = new System.Drawing.Size(67, 19);
+            this.numericUpDown_width.TabIndex = 7;
+            this.numericUpDown_width.Value = new decimal(new int[] {
+            1280,
+            0,
+            0,
+            0});
             // 
             // label_width
             // 
             this.label_width.AutoSize = true;
-            this.label_width.Location = new System.Drawing.Point(40, 270);
+            this.label_width.Location = new System.Drawing.Point(38, 341);
             this.label_width.Name = "label_width";
             this.label_width.Size = new System.Drawing.Size(29, 12);
             this.label_width.TabIndex = 3;
@@ -154,23 +185,38 @@
             // label_height
             // 
             this.label_height.AutoSize = true;
-            this.label_height.Location = new System.Drawing.Point(158, 270);
+            this.label_height.Location = new System.Drawing.Point(156, 341);
             this.label_height.Name = "label_height";
             this.label_height.Size = new System.Drawing.Size(25, 12);
             this.label_height.TabIndex = 3;
             this.label_height.Text = "高さ";
             // 
-            // numericUpDown2
+            // numericUpDown_height
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(189, 268);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown2.TabIndex = 5;
+            this.numericUpDown_height.Location = new System.Drawing.Point(187, 339);
+            this.numericUpDown_height.Maximum = new decimal(new int[] {
+            2160,
+            0,
+            0,
+            0});
+            this.numericUpDown_height.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_height.Name = "numericUpDown_height";
+            this.numericUpDown_height.Size = new System.Drawing.Size(67, 19);
+            this.numericUpDown_height.TabIndex = 8;
+            this.numericUpDown_height.Value = new decimal(new int[] {
+            720,
+            0,
+            0,
+            0});
             // 
             // label_max_width
             // 
             this.label_max_width.AutoSize = true;
-            this.label_max_width.Location = new System.Drawing.Point(40, 334);
+            this.label_max_width.Location = new System.Drawing.Point(38, 405);
             this.label_max_width.Name = "label_max_width";
             this.label_max_width.Size = new System.Drawing.Size(29, 12);
             this.label_max_width.TabIndex = 3;
@@ -179,113 +225,206 @@
             // label_max_height
             // 
             this.label_max_height.AutoSize = true;
-            this.label_max_height.Location = new System.Drawing.Point(158, 334);
+            this.label_max_height.Location = new System.Drawing.Point(156, 405);
             this.label_max_height.Name = "label_max_height";
             this.label_max_height.Size = new System.Drawing.Size(25, 12);
             this.label_max_height.TabIndex = 3;
             this.label_max_height.Text = "高さ";
             // 
-            // numericUpDown3
+            // numericUpDown_max_width
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(74, 332);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown3.TabIndex = 5;
+            this.numericUpDown_max_width.Location = new System.Drawing.Point(72, 403);
+            this.numericUpDown_max_width.Maximum = new decimal(new int[] {
+            3840,
+            0,
+            0,
+            0});
+            this.numericUpDown_max_width.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_max_width.Name = "numericUpDown_max_width";
+            this.numericUpDown_max_width.Size = new System.Drawing.Size(67, 19);
+            this.numericUpDown_max_width.TabIndex = 9;
+            this.numericUpDown_max_width.Value = new decimal(new int[] {
+            1920,
+            0,
+            0,
+            0});
             // 
-            // numericUpDown4
+            // numericUpDown_max_height
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(189, 332);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown4.TabIndex = 5;
+            this.numericUpDown_max_height.Location = new System.Drawing.Point(187, 403);
+            this.numericUpDown_max_height.Maximum = new decimal(new int[] {
+            2160,
+            0,
+            0,
+            0});
+            this.numericUpDown_max_height.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_max_height.Name = "numericUpDown_max_height";
+            this.numericUpDown_max_height.Size = new System.Drawing.Size(67, 19);
+            this.numericUpDown_max_height.TabIndex = 10;
+            this.numericUpDown_max_height.Value = new decimal(new int[] {
+            1080,
+            0,
+            0,
+            0});
             // 
             // label_min_width
             // 
             this.label_min_width.AutoSize = true;
-            this.label_min_width.Location = new System.Drawing.Point(40, 391);
+            this.label_min_width.Location = new System.Drawing.Point(38, 462);
             this.label_min_width.Name = "label_min_width";
             this.label_min_width.Size = new System.Drawing.Size(29, 12);
             this.label_min_width.TabIndex = 3;
             this.label_min_width.Text = "横幅";
-            this.label_min_width.Click += new System.EventHandler(this.label_min_width_Click);
             // 
             // label_min_height
             // 
             this.label_min_height.AutoSize = true;
-            this.label_min_height.Location = new System.Drawing.Point(158, 391);
+            this.label_min_height.Location = new System.Drawing.Point(156, 462);
             this.label_min_height.Name = "label_min_height";
             this.label_min_height.Size = new System.Drawing.Size(25, 12);
             this.label_min_height.TabIndex = 3;
             this.label_min_height.Text = "高さ";
-            this.label_min_height.Click += new System.EventHandler(this.label_min_height_Click);
             // 
-            // numericUpDown5
+            // numericUpDown_min_width
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(74, 389);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown5.TabIndex = 5;
-            this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
+            this.numericUpDown_min_width.Location = new System.Drawing.Point(72, 460);
+            this.numericUpDown_min_width.Maximum = new decimal(new int[] {
+            3840,
+            0,
+            0,
+            0});
+            this.numericUpDown_min_width.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_min_width.Name = "numericUpDown_min_width";
+            this.numericUpDown_min_width.Size = new System.Drawing.Size(67, 19);
+            this.numericUpDown_min_width.TabIndex = 11;
+            this.numericUpDown_min_width.Value = new decimal(new int[] {
+            960,
+            0,
+            0,
+            0});
             // 
-            // numericUpDown6
+            // numericUpDown_min_height
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(189, 389);
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown6.TabIndex = 5;
-            this.numericUpDown6.ValueChanged += new System.EventHandler(this.numericUpDown6_ValueChanged);
+            this.numericUpDown_min_height.Location = new System.Drawing.Point(187, 460);
+            this.numericUpDown_min_height.Maximum = new decimal(new int[] {
+            2160,
+            0,
+            0,
+            0});
+            this.numericUpDown_min_height.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_min_height.Name = "numericUpDown_min_height";
+            this.numericUpDown_min_height.Size = new System.Drawing.Size(67, 19);
+            this.numericUpDown_min_height.TabIndex = 12;
+            this.numericUpDown_min_height.Value = new decimal(new int[] {
+            540,
+            0,
+            0,
+            0});
             // 
             // label10
             // 
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label10.Location = new System.Drawing.Point(0, 60);
+            this.label10.Location = new System.Drawing.Point(-2, 131);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(420, 1);
-            this.label10.TabIndex = 3;
+            this.label10.TabIndex = 0;
             this.label10.Text = "label1";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 247);
+            this.label1.Location = new System.Drawing.Point(28, 318);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 12);
-            this.label1.TabIndex = 3;
+            this.label1.TabIndex = 0;
             this.label1.Text = "ウィンドウサイズ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 310);
+            this.label2.Location = new System.Drawing.Point(28, 381);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 12);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 0;
             this.label2.Text = "最大ウィンドウサイズ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 369);
+            this.label3.Location = new System.Drawing.Point(28, 440);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 12);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "最大ウィンドウサイズ";
+            this.label3.TabIndex = 0;
+            this.label3.Text = "最小ウィンドウサイズ";
             // 
-            // Form1
+            // textBox_export_path
+            // 
+            this.textBox_export_path.Location = new System.Drawing.Point(31, 94);
+            this.textBox_export_path.Name = "textBox_export_path";
+            this.textBox_export_path.Size = new System.Drawing.Size(291, 19);
+            this.textBox_export_path.TabIndex = 2;
+            this.textBox_export_path.Text = ".\\export";
+            this.textBox_export_path.TextChanged += new System.EventHandler(this.textBox_export_path_TextChanged);
+            // 
+            // button_reference_export
+            // 
+            this.button_reference_export.Location = new System.Drawing.Point(328, 92);
+            this.button_reference_export.Name = "button_reference_export";
+            this.button_reference_export.Size = new System.Drawing.Size(75, 23);
+            this.button_reference_export.TabIndex = 3;
+            this.button_reference_export.Text = "参照...";
+            this.button_reference_export.UseVisualStyleBackColor = true;
+            this.button_reference_export.Click += new System.EventHandler(this.button_reference_export_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "プロジェクトフォルダのパス";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(29, 79);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "出力先";
+            // 
+            // TyranoScriptPackager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 480);
-            this.Controls.Add(this.numericUpDown6);
-            this.Controls.Add(this.numericUpDown5);
-            this.Controls.Add(this.numericUpDown4);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.numericUpDown2);
+            this.ClientSize = new System.Drawing.Size(413, 551);
+            this.Controls.Add(this.numericUpDown_min_height);
+            this.Controls.Add(this.numericUpDown_min_width);
+            this.Controls.Add(this.numericUpDown_max_height);
+            this.Controls.Add(this.numericUpDown_max_width);
+            this.Controls.Add(this.numericUpDown_height);
             this.Controls.Add(this.label_min_height);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numericUpDown_width);
             this.Controls.Add(this.label_max_height);
             this.Controls.Add(this.label_min_width);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBox_resize);
             this.Controls.Add(this.label_max_width);
             this.Controls.Add(this.label_height);
             this.Controls.Add(this.label3);
@@ -295,21 +434,25 @@
             this.Controls.Add(this.label_risizable);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label_title);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label_name);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Controls.Add(this.button_execute);
+            this.Controls.Add(this.button_reference_export);
+            this.Controls.Add(this.button_reference_project);
+            this.Controls.Add(this.textBox_title);
+            this.Controls.Add(this.textBox_export_path);
+            this.Controls.Add(this.textBox_id);
+            this.Controls.Add(this.textBox_project_path);
+            this.Name = "TyranoScriptPackager";
+            this.Text = "TyranoScriptPackager";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_height)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max_width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max_height)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_min_width)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_min_height)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,31 +460,37 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox_project_path;
+        private System.Windows.Forms.Button button_reference_project;
+        private System.Windows.Forms.Button button_execute;
+        private System.Windows.Forms.TextBox textBox_id;
+        private System.Windows.Forms.TextBox textBox_title;
         private System.Windows.Forms.Label label_name;
         private System.Windows.Forms.Label label_title;
         private System.Windows.Forms.Label label_risizable;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.ComboBox comboBox_resize;
+        private System.Windows.Forms.NumericUpDown numericUpDown_width;
         private System.Windows.Forms.Label label_width;
         private System.Windows.Forms.Label label_height;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDown_height;
         private System.Windows.Forms.Label label_max_width;
         private System.Windows.Forms.Label label_max_height;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown numericUpDown_max_width;
+        private System.Windows.Forms.NumericUpDown numericUpDown_max_height;
         private System.Windows.Forms.Label label_min_width;
         private System.Windows.Forms.Label label_min_height;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.NumericUpDown numericUpDown_min_width;
+        private System.Windows.Forms.NumericUpDown numericUpDown_min_height;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox_export_path;
+        private System.Windows.Forms.Button button_reference_export;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog2;
     }
 }
 

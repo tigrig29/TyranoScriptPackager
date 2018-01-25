@@ -16,62 +16,42 @@ using Newtonsoft.Json;
 
 namespace TyranoScriptPackager
 {
-    public partial class Form1 : Form
+    public partial class TyranoScriptPackager : Form
     {
-        public Form1()
+        public TyranoScriptPackager()
         {
-            // プロジェクトのディレクトリパス入力
-            Console.WriteLine("プロジェクトのディレクトリパスを入力して下さい");
-            String projectUrl = Console.ReadLine();
-            // \をエスケープ
-            projectUrl.Replace(@"\", @"\\");
-
-            // パッケージング処理
-            TyranoPackage(projectUrl);
-
-            return;
-
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // 実行ファイルと同階層にexportフォルダがない場合は作成する
+            string export_path = Application.ExecutablePath.Replace(@"\TyranoScriptPackager.exe", @"\export\");
+            if (!Directory.Exists(export_path))
+            {
+                Directory.CreateDirectory(export_path);
+            }
 
+            // プロジェクトフォルダ参照：デフォルトではCドライブを参照する
+            folderBrowserDialog1.SelectedPath = @"C:\";
+            // 出力先フォルダ参照：実行ファイルの同階層のexportフォルダを参照する
+            folderBrowserDialog2.SelectedPath = Application.ExecutablePath.Replace(@"\TyranoScriptPackager.exe", @"\export\");
         }
 
-        public static void TyranoPackage(string projectUrl, string name = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
+        public static void TyranoPackage(string projectUrl, string exportDirectory, string id = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
         {
-            // ================================================================
-            // 元プロジェクトコピー処理
-            // ================================================================
-
-            // dataディレクトリコピー
-            CopyAndReplace(Path.Combine(projectUrl, "data"), @".\tmp\data");
-            // tyranoディレクトリコピー
-            CopyAndReplace(Path.Combine(projectUrl, "tyrano"), @".\tmp\tyrano");
-            // index.htmlコピー
-            string indexPath = @".\tmp\index.html";
-            if (File.Exists(indexPath))
-            {
-                File.Delete(indexPath);
-            }
-            File.Copy(Path.Combine(projectUrl, "index.html"), indexPath);
-            // package.json作成
-            string packagePath = @".\tmp\package.json";
-            if (File.Exists(packagePath))
-            {
-                File.Delete(packagePath);
-            }
-            CreatePackageJson(name, title, resizable, width, height, max_width, max_height, min_width, min_height);
-
-
             // ================================================================
             // エクスポート先ディレクトリ作成
             // ================================================================
             string exportName = System.Text.RegularExpressions.Regex.Replace(DateTime.Now.ToString(), @"[\/\s\:]", "_");
-            string exportUrl = Path.Combine(@".\export", exportName);
+            string exportUrl = Path.Combine(exportDirectory, exportName);
             CopyAndReplace(@".\binwin", exportUrl);
-            
+
+            // ================================================================
+            // package.Json作成
+            // ================================================================
+            string json = CreatePackageJson(id, title, resizable, width, height, max_width, max_height, min_width, min_height);
+            OutputPackageJson(exportUrl, json);
 
             // ================================================================
             // プロジェクトのZIPファイル作成
@@ -81,7 +61,10 @@ namespace TyranoScriptPackager
             zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
 
             // ファイルやディレクトリをZIPアーカイブに追加
-            zip.AddDirectory(@".\tmp", "");
+            zip.AddDirectory(Path.Combine(projectUrl, "data"), "data");
+            zip.AddDirectory(Path.Combine(projectUrl, "tyrano"), "tyrano");
+            zip.AddFile(Path.Combine(projectUrl, "index.html"), "");
+            zip.AddFile(Path.Combine(exportUrl, "package.json"), "");
 
             // 保存
             zip.Save(Path.Combine(exportUrl, "app.nw"));
@@ -96,13 +79,13 @@ namespace TyranoScriptPackager
             // 後処理
             // ================================================================
 
-            // tmpディレクトリの削除
-            Delete(@".\tmp");
+            // 不要ファイルの削除
             File.Delete(Path.Combine(exportUrl, "app.nw"));
             File.Delete(Path.Combine(exportUrl, "nw.exe"));
+            File.Delete(Path.Combine(exportUrl, "package.json"));
         }
         // package.json用のJSONデータ出力
-        public static void CreatePackageJson(string name = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
+        public static string CreatePackageJson(string name = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
         {
             var dic = new
             {
@@ -129,11 +112,21 @@ namespace TyranoScriptPackager
                     plugin = true,
                 }
             };
-            StreamWriter sw = new StreamWriter(@".\tmp\package.json", false, System.Text.Encoding.GetEncoding("utf-8"));
             string json = JsonConvert.SerializeObject(dic);
+            return json;
+
+
+            //StreamWriter sw = new StreamWriter(Path.Combine(projectUrl, "package.json"), false, System.Text.Encoding.GetEncoding("utf-8"));
+            
+            //sw.Write(json);
+            //sw.Close();
+
+        }
+        public static void OutputPackageJson(string projectUrl, string json)
+        {
+            StreamWriter sw = new StreamWriter(Path.Combine(projectUrl, "package.json"), false, System.Text.Encoding.GetEncoding("utf-8"));
             sw.Write(json);
             sw.Close();
-
         }
         // DOSコマンドの実行
         public static void ExecuteCommand(string arguments, bool output)
@@ -206,24 +199,86 @@ namespace TyranoScriptPackager
             }
         }
 
-        private void label_min_width_Click(object sender, EventArgs e)
+
+
+        // プロジェクトフォルダのパス入力欄
+        // 変更時のイベント
+        private void textBox_project_path_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        // プロジェクトフォルダの参照ボタン
+        private void button_reference_project_Click(object sender, EventArgs e)
+        {
+            // 参照ダイアログの説明
+            folderBrowserDialog1.Description = "パッケージ化するプロジェクトのフォルダを選択";
+            // 参照のルートアドレスをマイコンピュータに設定
+            folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer;
+
+            // 参照ダイアログ表示
+            DialogResult dr = folderBrowserDialog1.ShowDialog();
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                textBox_project_path.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
+
+
+        // 出力先フォルダのパス入力欄
+        // 変更時のイベント
+        private void textBox_export_path_TextChanged(object sender, EventArgs e)
         {
 
         }
-
-        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        // 出力先フォルダの参照ボタン
+        private void button_reference_export_Click(object sender, EventArgs e)
         {
-
+            // 参照ダイアログの説明
+            folderBrowserDialog2.Description = "出力先のフォルダを選択";
+            
+            // 参照ダイアログ表示
+            DialogResult dr = folderBrowserDialog2.ShowDialog();
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                textBox_export_path.Text = folderBrowserDialog2.SelectedPath;
+            }
         }
 
-        private void label_min_height_Click(object sender, EventArgs e)
+        private void button_execute_Click(object sender, EventArgs e)
         {
+            string export_path = textBox_export_path.Text;
+            string project_path = textBox_project_path.Text;
 
-        }
+            // 参照先にプロジェクトデータがあるかをチェックする
+            bool flag = false;
+            if (Directory.Exists(Path.Combine(project_path, "data")))
+            {
+                if (Directory.Exists(Path.Combine(project_path, "tyrano")))
+                {
+                    if (File.Exists(Path.Combine(project_path, "index.html")))
+                    {
+                        flag = true;
+                    }
+                }
+            }
 
-        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
-        {
+            // データチェック
+            if (flag == false)
+            {
+                // エラーダイアログ
+                MessageBox.Show("指定したパスにTyranoScriptデータが見つかりません。\nプロジェクトフォルダのパスを確認して下さい。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // 指定した出力フォルダがない場合は作成する
+                if (!Directory.Exists(export_path))
+                {
+                    Directory.CreateDirectory(export_path);
+                }
 
+                // パッケージング処理
+                TyranoPackage(project_path.Replace(@"\", @"\\"), export_path.Replace(@"\", @"\\"), textBox_id.Text, textBox_title.Text, System.Convert.ToBoolean(comboBox_resize.Text), (int)numericUpDown_width.Value, (int)numericUpDown_height.Value, (int)numericUpDown_max_width.Value, (int)numericUpDown_max_height.Value, (int)numericUpDown_min_width.Value, (int)numericUpDown_min_height.Value);
+            }
         }
     }
 }
