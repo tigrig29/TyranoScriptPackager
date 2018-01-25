@@ -1,0 +1,11 @@
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Release\TyranoScriptPackager.exe.config
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Release\TyranoScriptPackager.exe
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Release\DotNetZip.dll
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Release\Newtonsoft.Json.dll
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Release\DotNetZip.xml
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\bin\Release\Newtonsoft.Json.xml
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Release\TyranoScriptPackager.csprojResolveAssemblyReference.cache
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Release\TyranoScriptPackager.TyranoScriptPackager.resources
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Release\TyranoScriptPackager.Properties.Resources.resources
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Release\TyranoScriptPackager.csproj.GenerateResource.Cache
+C:\Users\zemi.DESKTOP-A37S10J\Documents\Github\TyranoScriptPackager\TyranoScriptPackager\TyranoScriptPackager\obj\Release\TyranoScriptPackager.exe
