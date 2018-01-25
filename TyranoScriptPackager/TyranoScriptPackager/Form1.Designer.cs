@@ -59,6 +59,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            this.textBox_export_folder = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox_export_folder = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_height)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max_width)).BeginInit();
@@ -69,12 +72,14 @@
             // 
             // textBox_project_path
             // 
+            this.textBox_project_path.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBox_project_path.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.textBox_project_path.Location = new System.Drawing.Point(31, 39);
             this.textBox_project_path.Name = "textBox_project_path";
             this.textBox_project_path.Size = new System.Drawing.Size(291, 19);
             this.textBox_project_path.TabIndex = 0;
             this.textBox_project_path.Text = "C:";
-            this.textBox_project_path.TextChanged += new System.EventHandler(this.textBox_project_path_TextChanged);
+            this.textBox_project_path.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // button_reference_project
             // 
@@ -88,43 +93,45 @@
             // 
             // button_execute
             // 
-            this.button_execute.Location = new System.Drawing.Point(300, 516);
+            this.button_execute.Location = new System.Drawing.Point(300, 565);
             this.button_execute.Name = "button_execute";
             this.button_execute.Size = new System.Drawing.Size(101, 23);
-            this.button_execute.TabIndex = 13;
+            this.button_execute.TabIndex = 15;
             this.button_execute.Text = "パッケージング実行";
             this.button_execute.UseVisualStyleBackColor = true;
             this.button_execute.Click += new System.EventHandler(this.button_execute_Click);
             // 
             // textBox_id
             // 
-            this.textBox_id.Location = new System.Drawing.Point(29, 174);
+            this.textBox_id.Location = new System.Drawing.Point(29, 223);
             this.textBox_id.Name = "textBox_id";
             this.textBox_id.Size = new System.Drawing.Size(137, 19);
-            this.textBox_id.TabIndex = 4;
-            this.textBox_id.Text = "TyranoScriptGame";
+            this.textBox_id.TabIndex = 6;
+            this.textBox_id.Text = "tyranoscript";
+            this.textBox_id.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // textBox_title
             // 
-            this.textBox_title.Location = new System.Drawing.Point(29, 224);
+            this.textBox_title.Location = new System.Drawing.Point(29, 273);
             this.textBox_title.Name = "textBox_title";
             this.textBox_title.Size = new System.Drawing.Size(137, 19);
-            this.textBox_title.TabIndex = 5;
+            this.textBox_title.TabIndex = 7;
             this.textBox_title.Text = "loading...";
+            this.textBox_title.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // label_name
             // 
             this.label_name.AutoSize = true;
-            this.label_name.Location = new System.Drawing.Point(27, 159);
+            this.label_name.Location = new System.Drawing.Point(27, 208);
             this.label_name.Name = "label_name";
-            this.label_name.Size = new System.Drawing.Size(46, 12);
+            this.label_name.Size = new System.Drawing.Size(47, 12);
             this.label_name.TabIndex = 0;
-            this.label_name.Text = "ゲームID";
+            this.label_name.Text = "ゲーム名";
             // 
             // label_title
             // 
             this.label_title.AutoSize = true;
-            this.label_title.Location = new System.Drawing.Point(27, 209);
+            this.label_title.Location = new System.Drawing.Point(27, 258);
             this.label_title.Name = "label_title";
             this.label_title.Size = new System.Drawing.Size(98, 12);
             this.label_title.TabIndex = 1;
@@ -133,7 +140,7 @@
             // label_risizable
             // 
             this.label_risizable.AutoSize = true;
-            this.label_risizable.Location = new System.Drawing.Point(27, 261);
+            this.label_risizable.Location = new System.Drawing.Point(27, 310);
             this.label_risizable.Name = "label_risizable";
             this.label_risizable.Size = new System.Drawing.Size(108, 12);
             this.label_risizable.TabIndex = 0;
@@ -141,19 +148,19 @@
             // 
             // comboBox_resize
             // 
+            this.comboBox_resize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_resize.FormattingEnabled = true;
             this.comboBox_resize.Items.AddRange(new object[] {
-            "True",
-            "False"});
-            this.comboBox_resize.Location = new System.Drawing.Point(29, 276);
+            "False",
+            "True"});
+            this.comboBox_resize.Location = new System.Drawing.Point(29, 325);
             this.comboBox_resize.Name = "comboBox_resize";
             this.comboBox_resize.Size = new System.Drawing.Size(67, 20);
-            this.comboBox_resize.TabIndex = 6;
-            this.comboBox_resize.Text = "False";
+            this.comboBox_resize.TabIndex = 8;
             // 
             // numericUpDown_width
             // 
-            this.numericUpDown_width.Location = new System.Drawing.Point(72, 339);
+            this.numericUpDown_width.Location = new System.Drawing.Point(72, 388);
             this.numericUpDown_width.Maximum = new decimal(new int[] {
             3840,
             0,
@@ -166,17 +173,18 @@
             0});
             this.numericUpDown_width.Name = "numericUpDown_width";
             this.numericUpDown_width.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_width.TabIndex = 7;
+            this.numericUpDown_width.TabIndex = 9;
             this.numericUpDown_width.Value = new decimal(new int[] {
             1280,
             0,
             0,
             0});
+            this.numericUpDown_width.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // label_width
             // 
             this.label_width.AutoSize = true;
-            this.label_width.Location = new System.Drawing.Point(38, 341);
+            this.label_width.Location = new System.Drawing.Point(38, 390);
             this.label_width.Name = "label_width";
             this.label_width.Size = new System.Drawing.Size(29, 12);
             this.label_width.TabIndex = 3;
@@ -185,7 +193,7 @@
             // label_height
             // 
             this.label_height.AutoSize = true;
-            this.label_height.Location = new System.Drawing.Point(156, 341);
+            this.label_height.Location = new System.Drawing.Point(156, 390);
             this.label_height.Name = "label_height";
             this.label_height.Size = new System.Drawing.Size(25, 12);
             this.label_height.TabIndex = 3;
@@ -193,7 +201,7 @@
             // 
             // numericUpDown_height
             // 
-            this.numericUpDown_height.Location = new System.Drawing.Point(187, 339);
+            this.numericUpDown_height.Location = new System.Drawing.Point(187, 388);
             this.numericUpDown_height.Maximum = new decimal(new int[] {
             2160,
             0,
@@ -206,17 +214,18 @@
             0});
             this.numericUpDown_height.Name = "numericUpDown_height";
             this.numericUpDown_height.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_height.TabIndex = 8;
+            this.numericUpDown_height.TabIndex = 10;
             this.numericUpDown_height.Value = new decimal(new int[] {
             720,
             0,
             0,
             0});
+            this.numericUpDown_height.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // label_max_width
             // 
             this.label_max_width.AutoSize = true;
-            this.label_max_width.Location = new System.Drawing.Point(38, 405);
+            this.label_max_width.Location = new System.Drawing.Point(38, 454);
             this.label_max_width.Name = "label_max_width";
             this.label_max_width.Size = new System.Drawing.Size(29, 12);
             this.label_max_width.TabIndex = 3;
@@ -225,7 +234,7 @@
             // label_max_height
             // 
             this.label_max_height.AutoSize = true;
-            this.label_max_height.Location = new System.Drawing.Point(156, 405);
+            this.label_max_height.Location = new System.Drawing.Point(156, 454);
             this.label_max_height.Name = "label_max_height";
             this.label_max_height.Size = new System.Drawing.Size(25, 12);
             this.label_max_height.TabIndex = 3;
@@ -233,7 +242,7 @@
             // 
             // numericUpDown_max_width
             // 
-            this.numericUpDown_max_width.Location = new System.Drawing.Point(72, 403);
+            this.numericUpDown_max_width.Location = new System.Drawing.Point(72, 452);
             this.numericUpDown_max_width.Maximum = new decimal(new int[] {
             3840,
             0,
@@ -246,16 +255,17 @@
             0});
             this.numericUpDown_max_width.Name = "numericUpDown_max_width";
             this.numericUpDown_max_width.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_max_width.TabIndex = 9;
+            this.numericUpDown_max_width.TabIndex = 11;
             this.numericUpDown_max_width.Value = new decimal(new int[] {
             1920,
             0,
             0,
             0});
+            this.numericUpDown_max_width.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // numericUpDown_max_height
             // 
-            this.numericUpDown_max_height.Location = new System.Drawing.Point(187, 403);
+            this.numericUpDown_max_height.Location = new System.Drawing.Point(187, 452);
             this.numericUpDown_max_height.Maximum = new decimal(new int[] {
             2160,
             0,
@@ -268,17 +278,18 @@
             0});
             this.numericUpDown_max_height.Name = "numericUpDown_max_height";
             this.numericUpDown_max_height.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_max_height.TabIndex = 10;
+            this.numericUpDown_max_height.TabIndex = 12;
             this.numericUpDown_max_height.Value = new decimal(new int[] {
             1080,
             0,
             0,
             0});
+            this.numericUpDown_max_height.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // label_min_width
             // 
             this.label_min_width.AutoSize = true;
-            this.label_min_width.Location = new System.Drawing.Point(38, 462);
+            this.label_min_width.Location = new System.Drawing.Point(38, 511);
             this.label_min_width.Name = "label_min_width";
             this.label_min_width.Size = new System.Drawing.Size(29, 12);
             this.label_min_width.TabIndex = 3;
@@ -287,7 +298,7 @@
             // label_min_height
             // 
             this.label_min_height.AutoSize = true;
-            this.label_min_height.Location = new System.Drawing.Point(156, 462);
+            this.label_min_height.Location = new System.Drawing.Point(156, 511);
             this.label_min_height.Name = "label_min_height";
             this.label_min_height.Size = new System.Drawing.Size(25, 12);
             this.label_min_height.TabIndex = 3;
@@ -295,7 +306,7 @@
             // 
             // numericUpDown_min_width
             // 
-            this.numericUpDown_min_width.Location = new System.Drawing.Point(72, 460);
+            this.numericUpDown_min_width.Location = new System.Drawing.Point(72, 509);
             this.numericUpDown_min_width.Maximum = new decimal(new int[] {
             3840,
             0,
@@ -308,16 +319,17 @@
             0});
             this.numericUpDown_min_width.Name = "numericUpDown_min_width";
             this.numericUpDown_min_width.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_min_width.TabIndex = 11;
+            this.numericUpDown_min_width.TabIndex = 13;
             this.numericUpDown_min_width.Value = new decimal(new int[] {
             960,
             0,
             0,
             0});
+            this.numericUpDown_min_width.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // numericUpDown_min_height
             // 
-            this.numericUpDown_min_height.Location = new System.Drawing.Point(187, 460);
+            this.numericUpDown_min_height.Location = new System.Drawing.Point(187, 509);
             this.numericUpDown_min_height.Maximum = new decimal(new int[] {
             2160,
             0,
@@ -330,17 +342,18 @@
             0});
             this.numericUpDown_min_height.Name = "numericUpDown_min_height";
             this.numericUpDown_min_height.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_min_height.TabIndex = 12;
+            this.numericUpDown_min_height.TabIndex = 14;
             this.numericUpDown_min_height.Value = new decimal(new int[] {
             540,
             0,
             0,
             0});
+            this.numericUpDown_min_height.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // label10
             // 
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label10.Location = new System.Drawing.Point(-2, 131);
+            this.label10.Location = new System.Drawing.Point(-2, 180);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(420, 1);
             this.label10.TabIndex = 0;
@@ -349,7 +362,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 318);
+            this.label1.Location = new System.Drawing.Point(28, 367);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 12);
             this.label1.TabIndex = 0;
@@ -358,7 +371,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 381);
+            this.label2.Location = new System.Drawing.Point(28, 430);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 12);
             this.label2.TabIndex = 0;
@@ -367,7 +380,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 440);
+            this.label3.Location = new System.Drawing.Point(28, 489);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 12);
             this.label3.TabIndex = 0;
@@ -375,12 +388,13 @@
             // 
             // textBox_export_path
             // 
+            this.textBox_export_path.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBox_export_path.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.textBox_export_path.Location = new System.Drawing.Point(31, 94);
             this.textBox_export_path.Name = "textBox_export_path";
             this.textBox_export_path.Size = new System.Drawing.Size(291, 19);
             this.textBox_export_path.TabIndex = 2;
-            this.textBox_export_path.Text = ".\\export";
-            this.textBox_export_path.TextChanged += new System.EventHandler(this.textBox_export_path_TextChanged);
+            this.textBox_export_path.Enter += new System.EventHandler(this.textBox_Enter);
             // 
             // button_reference_export
             // 
@@ -410,11 +424,43 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "出力先";
             // 
+            // textBox_export_folder
+            // 
+            this.textBox_export_folder.Enabled = false;
+            this.textBox_export_folder.Location = new System.Drawing.Point(111, 137);
+            this.textBox_export_folder.Name = "textBox_export_folder";
+            this.textBox_export_folder.Size = new System.Drawing.Size(211, 19);
+            this.textBox_export_folder.TabIndex = 5;
+            this.textBox_export_folder.Enter += new System.EventHandler(this.textBox_Enter);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(29, 122);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 12);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "出力フォルダ名";
+            // 
+            // comboBox_export_folder
+            // 
+            this.comboBox_export_folder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_export_folder.FormattingEnabled = true;
+            this.comboBox_export_folder.Items.AddRange(new object[] {
+            "自動生成",
+            "入力する"});
+            this.comboBox_export_folder.Location = new System.Drawing.Point(31, 137);
+            this.comboBox_export_folder.Name = "comboBox_export_folder";
+            this.comboBox_export_folder.Size = new System.Drawing.Size(74, 20);
+            this.comboBox_export_folder.TabIndex = 4;
+            this.comboBox_export_folder.SelectedIndexChanged += new System.EventHandler(this.comboBox_export_folder_SelectedIndexChanged);
+            // 
             // TyranoScriptPackager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 551);
+            this.ClientSize = new System.Drawing.Size(413, 597);
+            this.Controls.Add(this.comboBox_export_folder);
             this.Controls.Add(this.numericUpDown_min_height);
             this.Controls.Add(this.numericUpDown_min_width);
             this.Controls.Add(this.numericUpDown_max_height);
@@ -434,6 +480,7 @@
             this.Controls.Add(this.label_risizable);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label_title);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label_name);
@@ -441,11 +488,13 @@
             this.Controls.Add(this.button_reference_export);
             this.Controls.Add(this.button_reference_project);
             this.Controls.Add(this.textBox_title);
+            this.Controls.Add(this.textBox_export_folder);
             this.Controls.Add(this.textBox_export_path);
             this.Controls.Add(this.textBox_id);
             this.Controls.Add(this.textBox_project_path);
             this.Name = "TyranoScriptPackager";
             this.Text = "TyranoScriptPackager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TyranoScriptPackager_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_height)).EndInit();
@@ -491,6 +540,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog2;
+        private System.Windows.Forms.TextBox textBox_export_folder;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox_export_folder;
     }
 }
 
