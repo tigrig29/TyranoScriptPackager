@@ -41,7 +41,7 @@ namespace TyranoScriptPackager
 
 
             // 実行ファイルと同階層にexportフォルダがない場合は作成する
-            string export_path = Application.ExecutablePath.Replace(@"\TyranoScriptPackager.exe", @"\export\");
+            string export_path = Application.ExecutablePath.Replace(@"\TyranoScriptPackager", @"\export\").Replace(".exe", "").Replace(".EXE", "");
             if (!Directory.Exists(export_path))
             {
                 Directory.CreateDirectory(export_path);
@@ -242,6 +242,7 @@ namespace TyranoScriptPackager
             // ファイルやディレクトリをZIPアーカイブに追加
             zip.AddDirectory(Path.Combine(projectUrl, "data"), "data");
             zip.AddDirectory(Path.Combine(projectUrl, "tyrano"), "tyrano");
+            zip.AddDirectory(Path.Combine(projectUrl, "node_modules"), "node_modules");
             zip.AddFile(Path.Combine(projectUrl, "index.html"), "");
             zip.AddFile(Path.Combine(exportUrl, "package.json"), "");
 
