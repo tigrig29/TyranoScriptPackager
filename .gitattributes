@@ -1,4 +1,8 @@
 # Auto detect text files and perform LF normalization
-.resx linguist-language=C#
-.config linguist-language=C#
-.csproj linguist-language=C#
+README.md linguist-vendored
+TyranoScriptPackager/TyranoScriptPackager/App.config linguist-vendored
+TyranoScriptPackager/TyranoScriptPackager/Properties/Resources.resx linguist-vendored
+TyranoScriptPackager/TyranoScriptPackager/packages.config linguist-vendored
+TyranoScriptPackager/TyranoScriptPackager/Form1.resx linguist-vendored
+TyranoScriptPackager/TyranoScriptPackager/TyranoScriptPackager.csproj linguist-vendored
+TyranoScriptPackager/packages/Newtonsoft.Json.10.0.3/LICENSE.md linguist-vendored
