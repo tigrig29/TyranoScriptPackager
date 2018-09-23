@@ -1,4 +1,4 @@
 # Auto detect text files and perform LF normalization
 README.md linguist-vendored
-TyranoScriptPackager/TyranoScriptPackager/TyranoScriptPackager/bin linguist-vendored
-TyranoScriptPackager/TyranoScriptPackager/TyranoScriptPackager/obj linguist-vendored
+TyranoScriptPackager/TyranoScriptPackager/bin linguist-vendored
+TyranoScriptPackager/TyranoScriptPackager/obj linguist-vendored
