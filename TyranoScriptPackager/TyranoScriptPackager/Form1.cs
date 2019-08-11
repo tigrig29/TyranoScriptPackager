@@ -245,6 +245,7 @@ namespace TyranoScriptPackager
             zip.AddDirectory(Path.Combine(projectUrl, "node_modules"), "node_modules");
             zip.AddFile(Path.Combine(projectUrl, "index.html"), "");
             zip.AddFile(Path.Combine(exportUrl, "package.json"), "");
+            zip.AddFile(Path.Combine(projectUrl, "link.png"), "");
 
             // 保存
             zip.Save(Path.Combine(exportUrl, "app.nw"));
@@ -260,7 +261,7 @@ namespace TyranoScriptPackager
             // ================================================================
             // 削除が速いとエラー起きるので一旦止める
             //Task.Delay(300);
-            System.Threading.Thread.Sleep(300);
+            System.Threading.Thread.Sleep(1500);
 
             // 不要ファイルの削除
             File.Delete(Path.Combine(exportUrl, "app.nw"));
