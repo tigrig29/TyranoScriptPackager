@@ -62,6 +62,7 @@
             this.textBox_export_folder = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_export_folder = new System.Windows.Forms.ComboBox();
+            this.checkBox_reflectIdToGameTitle = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_height)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max_width)).BeginInit();
@@ -115,7 +116,7 @@
             this.textBox_title.Location = new System.Drawing.Point(29, 273);
             this.textBox_title.Name = "textBox_title";
             this.textBox_title.Size = new System.Drawing.Size(137, 19);
-            this.textBox_title.TabIndex = 7;
+            this.textBox_title.TabIndex = 8;
             this.textBox_title.Text = "loading...";
             this.textBox_title.Enter += new System.EventHandler(this.textBox_Enter);
             // 
@@ -156,7 +157,7 @@
             this.comboBox_resize.Location = new System.Drawing.Point(29, 325);
             this.comboBox_resize.Name = "comboBox_resize";
             this.comboBox_resize.Size = new System.Drawing.Size(67, 20);
-            this.comboBox_resize.TabIndex = 8;
+            this.comboBox_resize.TabIndex = 9;
             // 
             // numericUpDown_width
             // 
@@ -173,7 +174,7 @@
             0});
             this.numericUpDown_width.Name = "numericUpDown_width";
             this.numericUpDown_width.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_width.TabIndex = 9;
+            this.numericUpDown_width.TabIndex = 10;
             this.numericUpDown_width.Value = new decimal(new int[] {
             1280,
             0,
@@ -214,7 +215,7 @@
             0});
             this.numericUpDown_height.Name = "numericUpDown_height";
             this.numericUpDown_height.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_height.TabIndex = 10;
+            this.numericUpDown_height.TabIndex = 11;
             this.numericUpDown_height.Value = new decimal(new int[] {
             720,
             0,
@@ -255,7 +256,7 @@
             0});
             this.numericUpDown_max_width.Name = "numericUpDown_max_width";
             this.numericUpDown_max_width.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_max_width.TabIndex = 11;
+            this.numericUpDown_max_width.TabIndex = 12;
             this.numericUpDown_max_width.Value = new decimal(new int[] {
             1920,
             0,
@@ -278,7 +279,7 @@
             0});
             this.numericUpDown_max_height.Name = "numericUpDown_max_height";
             this.numericUpDown_max_height.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_max_height.TabIndex = 12;
+            this.numericUpDown_max_height.TabIndex = 13;
             this.numericUpDown_max_height.Value = new decimal(new int[] {
             1080,
             0,
@@ -319,7 +320,7 @@
             0});
             this.numericUpDown_min_width.Name = "numericUpDown_min_width";
             this.numericUpDown_min_width.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_min_width.TabIndex = 13;
+            this.numericUpDown_min_width.TabIndex = 14;
             this.numericUpDown_min_width.Value = new decimal(new int[] {
             960,
             0,
@@ -342,7 +343,7 @@
             0});
             this.numericUpDown_min_height.Name = "numericUpDown_min_height";
             this.numericUpDown_min_height.Size = new System.Drawing.Size(67, 19);
-            this.numericUpDown_min_height.TabIndex = 14;
+            this.numericUpDown_min_height.TabIndex = 15;
             this.numericUpDown_min_height.Value = new decimal(new int[] {
             540,
             0,
@@ -455,11 +456,24 @@
             this.comboBox_export_folder.TabIndex = 4;
             this.comboBox_export_folder.SelectedIndexChanged += new System.EventHandler(this.comboBox_export_folder_SelectedIndexChanged);
             // 
+            // checkBox_reflectIdToGameTitle
+            // 
+            this.checkBox_reflectIdToGameTitle.AutoSize = true;
+            this.checkBox_reflectIdToGameTitle.Checked = true;
+            this.checkBox_reflectIdToGameTitle.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_reflectIdToGameTitle.Location = new System.Drawing.Point(174, 226);
+            this.checkBox_reflectIdToGameTitle.Name = "checkBox_reflectIdToGameTitle";
+            this.checkBox_reflectIdToGameTitle.Size = new System.Drawing.Size(206, 16);
+            this.checkBox_reflectIdToGameTitle.TabIndex = 7;
+            this.checkBox_reflectIdToGameTitle.Text = "Config.tjs の System.title に反映する";
+            this.checkBox_reflectIdToGameTitle.UseVisualStyleBackColor = true;
+            // 
             // TyranoScriptPackager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 597);
+            this.Controls.Add(this.checkBox_reflectIdToGameTitle);
             this.Controls.Add(this.comboBox_export_folder);
             this.Controls.Add(this.numericUpDown_min_height);
             this.Controls.Add(this.numericUpDown_min_width);
@@ -543,6 +557,7 @@
         private System.Windows.Forms.TextBox textBox_export_folder;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox_export_folder;
+        private System.Windows.Forms.CheckBox checkBox_reflectIdToGameTitle;
     }
 }
 

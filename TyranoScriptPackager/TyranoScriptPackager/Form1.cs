@@ -29,6 +29,7 @@ namespace TyranoScriptPackager
             textBox_project_path.Text = Properties.Settings.Default.project_path;
             textBox_export_path.Text = Properties.Settings.Default.export_path;
             textBox_id.Text = Properties.Settings.Default.id;
+            checkBox_reflectIdToGameTitle.Checked = Properties.Settings.Default.reflect_id_to_game_title;
             textBox_title.Text = Properties.Settings.Default.title;
             numericUpDown_width.Value = (int)Properties.Settings.Default.width;
             numericUpDown_height.Value = (int)Properties.Settings.Default.height;
@@ -160,7 +161,20 @@ namespace TyranoScriptPackager
                 button_execute.Enabled = false;
 
                 // パッケージング処理
-                Util.TyranoPackage(project_path.Replace(@"\", @"\\"), exportUrl, textBox_id.Text, textBox_title.Text, System.Convert.ToBoolean(comboBox_resize.Text), (int)numericUpDown_width.Value, (int)numericUpDown_height.Value, (int)numericUpDown_max_width.Value, (int)numericUpDown_max_height.Value, (int)numericUpDown_min_width.Value, (int)numericUpDown_min_height.Value);
+                Util.TyranoPackage(
+                    project_path.Replace(@"\", @"\\"),
+                    exportUrl,
+                    textBox_id.Text,
+                    checkBox_reflectIdToGameTitle.Checked,
+                    textBox_title.Text,
+                    System.Convert.ToBoolean(comboBox_resize.Text),
+                    (int)numericUpDown_width.Value,
+                    (int)numericUpDown_height.Value,
+                    (int)numericUpDown_max_width.Value,
+                    (int)numericUpDown_max_height.Value,
+                    (int)numericUpDown_min_width.Value,
+                    (int)numericUpDown_min_height.Value
+                );
 
                 // 「処理中」を解除
                 button_execute.Text = "パッケージング実行";
@@ -189,6 +203,7 @@ namespace TyranoScriptPackager
             Properties.Settings.Default.export_path = textBox_export_path.Text;
             Properties.Settings.Default.id = textBox_id.Text;
             Properties.Settings.Default.title = textBox_title.Text;
+            Properties.Settings.Default.reflect_id_to_game_title = checkBox_reflectIdToGameTitle.Checked;
             Properties.Settings.Default.width = (int)numericUpDown_width.Value;
             Properties.Settings.Default.height = (int)numericUpDown_height.Value;
             Properties.Settings.Default.max_width = (int)numericUpDown_max_width.Value;
@@ -218,7 +233,20 @@ namespace TyranoScriptPackager
     // 処理関数群
     public class Util
     {
-        public static void TyranoPackage(string projectUrl, string exportUrl, string id = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
+        public static void TyranoPackage(
+                string projectUrl,
+                string exportUrl,
+                string id = "TyranoScriptGame",
+                bool reflectIdToGameTitle = true,
+                string title = "loading...",
+                bool resizable = true,
+                int width = 1280,
+                int height = 720,
+                int max_width = 1920,
+                int max_height = 1080,
+                int min_width = 640,
+                int min_height = 480
+            )
         {
             // ================================================================
             // エクスポート先フォルダ作成
@@ -236,7 +264,7 @@ namespace TyranoScriptPackager
             // プロジェクトのデータコピー＆ゲームタイトル変更
             // ================================================================
             CopyAndReplace(Path.Combine(projectUrl, "data"), Path.Combine(exportUrl, "data"));
-            ReplaceStringInFile(Path.Combine(exportUrl, @"data\system\Config.tjs"), ";System.title = .+", ";System.title = \"" + id + "\";");
+            if (reflectIdToGameTitle) ReplaceStringInFile(Path.Combine(exportUrl, @"data\system\Config.tjs"), ";System.title = .+", ";System.title = \"" + id + "\";");
             
             // ================================================================
             // プロジェクトのZIPファイル作成
