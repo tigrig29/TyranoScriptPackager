@@ -254,14 +254,11 @@ namespace TyranoScriptPackager
             // copyコマンド実行
             // ================================================================
             string arguments = @"/c copy /b " + exportUrl + @"\nw.exe" + "+" + exportUrl + @"\app.nw" + " " + exportUrl + @"\" + id + ".exe";
-            ExecuteCommand(arguments, false);
+            ExecuteCommand(arguments);
 
             // ================================================================
             // 後処理
             // ================================================================
-            // 削除が速いとエラー起きるので一旦止める
-            //Task.Delay(300);
-            System.Threading.Thread.Sleep(1500);
 
             // 不要ファイルの削除
             File.Delete(Path.Combine(exportUrl, "app.nw"));
@@ -307,7 +304,7 @@ namespace TyranoScriptPackager
             sw.Close();
         }
         // DOSコマンドの実行
-        public static void ExecuteCommand(string arguments, bool output)
+        public static void ExecuteCommand(string arguments)
         {
             System.Diagnostics.Process pro = new System.Diagnostics.Process();
 
@@ -316,20 +313,12 @@ namespace TyranoScriptPackager
             pro.StartInfo.Arguments = arguments;
             pro.StartInfo.CreateNoWindow = true;                // DOSプロンプトの黒い画面を非表示
             pro.StartInfo.UseShellExecute = false;              // プロセスを新しいウィンドウで起動するか否か
-            pro.StartInfo.RedirectStandardOutput = output;      // 標準出力をリダイレクトして取得したい
 
             // 実行
             pro.Start();
 
-            // 出力の表示
-            if (output)
-            {
-                string log = pro.StandardOutput.ReadToEnd();
-                log.Replace("\r\r\n", "\n"); // 改行コード変換
-                pro.WaitForExit();
-                pro.Close();
-                Console.WriteLine(log);
-            }
+            pro.WaitForExit();
+            pro.Close();
         }
         // ディレクトリの削除
         public static void Delete(string targetDirectoryPath)
