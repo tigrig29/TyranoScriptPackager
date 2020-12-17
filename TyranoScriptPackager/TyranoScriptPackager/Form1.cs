@@ -253,17 +253,25 @@ namespace TyranoScriptPackager
             // ================================================================
             // copyコマンド実行
             // ================================================================
-            string arguments = @"/c copy /b " + exportUrl + @"\nw.exe" + "+" + exportUrl + @"\app.nw" + " " + exportUrl + @"\" + id + ".exe";
+            string temporaryFileName = "this-name-will-be-replaced.exe";
+
+            string arguments = "/c copy /b " + 
+                Path.Combine(exportUrl, "nw.exe") + "+" + 
+                Path.Combine(exportUrl, "app.nw") + " " + 
+                Path.Combine(exportUrl, temporaryFileName); // 一旦仮ファイル名で作成して、後で置換する（『ゲーム名』に空白が含まれていた場合への対応）
             ExecuteCommand(arguments);
 
             // ================================================================
             // 後処理
             // ================================================================
 
+            // EXE ファイル名置換
+            File.Move(Path.Combine(exportUrl, temporaryFileName), Path.Combine(exportUrl, id + ".exe"));
+
             // 不要ファイルの削除
             File.Delete(Path.Combine(exportUrl, "app.nw"));
             File.Delete(Path.Combine(exportUrl, "nw.exe"));
-            File.Delete(Path.Combine(exportUrl, "package.json"));
+            //File.Delete(Path.Combine(exportUrl, "package.json"));
         }
         // package.json用のJSONデータ出力
         public static string CreatePackageJson(string name = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
