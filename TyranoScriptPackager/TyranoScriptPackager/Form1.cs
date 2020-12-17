@@ -233,6 +233,12 @@ namespace TyranoScriptPackager
             OutputPackageJson(exportUrl, json);
 
             // ================================================================
+            // プロジェクトのデータコピー＆ゲームタイトル変更
+            // ================================================================
+            CopyAndReplace(Path.Combine(projectUrl, "data"), Path.Combine(exportUrl, "data"));
+            ReplaceStringInFile(Path.Combine(exportUrl, @"data\system\Config.tjs"), ";System.title = .+", ";System.title = \"" + id + "\";");
+            
+            // ================================================================
             // プロジェクトのZIPファイル作成
             // ================================================================
             Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile();
@@ -240,7 +246,7 @@ namespace TyranoScriptPackager
             zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
 
             // ファイルやディレクトリをZIPアーカイブに追加
-            zip.AddDirectory(Path.Combine(projectUrl, "data"), "data");
+            zip.AddDirectory(Path.Combine(exportUrl, "data"), "data");
             zip.AddDirectory(Path.Combine(projectUrl, "tyrano"), "tyrano");
             zip.AddDirectory(Path.Combine(projectUrl, "node_modules"), "node_modules");
             zip.AddFile(Path.Combine(projectUrl, "index.html"), "");
@@ -269,9 +275,10 @@ namespace TyranoScriptPackager
             File.Move(Path.Combine(exportUrl, temporaryFileName), Path.Combine(exportUrl, id + ".exe"));
 
             // 不要ファイルの削除
+            Delete(Path.Combine(exportUrl, "data"));
             File.Delete(Path.Combine(exportUrl, "app.nw"));
             File.Delete(Path.Combine(exportUrl, "nw.exe"));
-            //File.Delete(Path.Combine(exportUrl, "package.json"));
+            File.Delete(Path.Combine(exportUrl, "package.json"));
         }
         // package.json用のJSONデータ出力
         public static string CreatePackageJson(string name = "TyranoScriptGame", string title = "loading...", bool resizable = true, int width = 1280, int height = 720, int max_width = 1920, int max_height = 1080, int min_width = 640, int min_height = 480)
@@ -372,6 +379,26 @@ namespace TyranoScriptPackager
             {
                 CopyAndReplace(dir, Path.Combine(copyPath, Path.GetFileName(dir)));
             }
+        }
+
+        /// <summary>
+        /// 指定したファイル内の文字列置換を行う
+        /// </summary>
+        /// <param name="sourcePath">対象ファイルパス（ファイル名、拡張子まで）</param>
+        /// <param name="beforeStr">置換前文字列（正規表現可）</param>
+        /// <param name="afterStr">置換後文字列（正規表現可）</param>
+        public static void ReplaceStringInFile(string sourcePath, string beforeStr, string afterStr)
+        {
+            StreamReader sr = new StreamReader(sourcePath);
+            string s = sr.ReadToEnd();
+            sr.Close();
+
+            s = System.Text.RegularExpressions.Regex.Replace(s, beforeStr, afterStr);
+
+            StreamWriter sw = new StreamWriter(sourcePath, false);
+
+            sw.Write(s);
+            sw.Close();
         }
 
     }
