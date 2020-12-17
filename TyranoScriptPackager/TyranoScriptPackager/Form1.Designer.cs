@@ -63,6 +63,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_export_folder = new System.Windows.Forms.ComboBox();
             this.checkBox_reflectIdToGameTitle = new System.Windows.Forms.CheckBox();
+            this.label_projectId = new System.Windows.Forms.Label();
+            this.textBox_projectId = new System.Windows.Forms.TextBox();
+            this.comboBox_projectId = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_height)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max_width)).BeginInit();
@@ -94,7 +97,7 @@
             // 
             // button_execute
             // 
-            this.button_execute.Location = new System.Drawing.Point(300, 565);
+            this.button_execute.Location = new System.Drawing.Point(300, 594);
             this.button_execute.Name = "button_execute";
             this.button_execute.Size = new System.Drawing.Size(101, 23);
             this.button_execute.TabIndex = 15;
@@ -468,11 +471,44 @@
             this.checkBox_reflectIdToGameTitle.Text = "Config.tjs の System.title に反映する";
             this.checkBox_reflectIdToGameTitle.UseVisualStyleBackColor = true;
             // 
+            // label_projectId
+            // 
+            this.label_projectId.AutoSize = true;
+            this.label_projectId.Location = new System.Drawing.Point(27, 546);
+            this.label_projectId.Name = "label_projectId";
+            this.label_projectId.Size = new System.Drawing.Size(67, 12);
+            this.label_projectId.TabIndex = 16;
+            this.label_projectId.Text = "プロジェクトID";
+            // 
+            // textBox_projectId
+            // 
+            this.textBox_projectId.AcceptsReturn = true;
+            this.textBox_projectId.Location = new System.Drawing.Point(111, 561);
+            this.textBox_projectId.Name = "textBox_projectId";
+            this.textBox_projectId.Size = new System.Drawing.Size(290, 19);
+            this.textBox_projectId.TabIndex = 17;
+            // 
+            // comboBox_projectId
+            // 
+            this.comboBox_projectId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_projectId.FormattingEnabled = true;
+            this.comboBox_projectId.Items.AddRange(new object[] {
+            "指定する",
+            "指定しない"});
+            this.comboBox_projectId.Location = new System.Drawing.Point(29, 561);
+            this.comboBox_projectId.Name = "comboBox_projectId";
+            this.comboBox_projectId.Size = new System.Drawing.Size(76, 20);
+            this.comboBox_projectId.TabIndex = 18;
+            this.comboBox_projectId.SelectedIndexChanged += new System.EventHandler(this.comboBox_projectId_SelectedIndexChanged);
+            // 
             // TyranoScriptPackager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 597);
+            this.ClientSize = new System.Drawing.Size(413, 629);
+            this.Controls.Add(this.comboBox_projectId);
+            this.Controls.Add(this.label_projectId);
+            this.Controls.Add(this.textBox_projectId);
             this.Controls.Add(this.checkBox_reflectIdToGameTitle);
             this.Controls.Add(this.comboBox_export_folder);
             this.Controls.Add(this.numericUpDown_min_height);
@@ -558,6 +594,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox_export_folder;
         private System.Windows.Forms.CheckBox checkBox_reflectIdToGameTitle;
+        private System.Windows.Forms.Label label_projectId;
+        private System.Windows.Forms.TextBox textBox_projectId;
+        private System.Windows.Forms.ComboBox comboBox_projectId;
     }
 }
 

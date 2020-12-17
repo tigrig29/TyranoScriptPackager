@@ -39,6 +39,8 @@ namespace TyranoScriptPackager
             numericUpDown_min_height.Value = (int)Properties.Settings.Default.min_height;
             comboBox_export_folder.SelectedIndex = (int)Properties.Settings.Default.export_folder_auto;
             comboBox_resize.SelectedIndex = (int)Properties.Settings.Default.resize;
+            comboBox_projectId.SelectedIndex = (int)Properties.Settings.Default.combo_project_id;
+            textBox_projectId.Text = Properties.Settings.Default.project_id;
 
 
             // 実行ファイルと同階層にexportフォルダがない場合は作成する
@@ -173,7 +175,8 @@ namespace TyranoScriptPackager
                     (int)numericUpDown_max_width.Value,
                     (int)numericUpDown_max_height.Value,
                     (int)numericUpDown_min_width.Value,
-                    (int)numericUpDown_min_height.Value
+                    (int)numericUpDown_min_height.Value,
+                    comboBox_projectId.SelectedIndex == 0 ? textBox_projectId.Text : null
                 );
 
                 // 「処理中」を解除
@@ -212,6 +215,8 @@ namespace TyranoScriptPackager
             Properties.Settings.Default.min_height = (int)numericUpDown_min_height.Value;
             Properties.Settings.Default.export_folder_auto = (int)comboBox_export_folder.SelectedIndex;
             Properties.Settings.Default.resize = (int)comboBox_resize.SelectedIndex;
+            Properties.Settings.Default.combo_project_id = (int)comboBox_projectId.SelectedIndex;
+            Properties.Settings.Default.project_id = textBox_projectId.Text;
             Properties.Settings.Default.Save();
         }
 
@@ -227,6 +232,19 @@ namespace TyranoScriptPackager
                 NumericUpDown nud = (NumericUpDown)sender;
                 (nud).Select(0, nud.Value.ToString().Length);
             }   
+        }
+
+        private void comboBox_projectId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_projectId.SelectedIndex == 1)
+            {
+                textBox_projectId.Text = "";
+                textBox_projectId.Enabled = false;
+            }
+            else
+            {
+                textBox_projectId.Enabled = true;
+            }
         }
     }
 
@@ -245,7 +263,8 @@ namespace TyranoScriptPackager
                 int max_width = 1920,
                 int max_height = 1080,
                 int min_width = 640,
-                int min_height = 480
+                int min_height = 480,
+                string projectId = null
             )
         {
             // ================================================================
@@ -261,10 +280,20 @@ namespace TyranoScriptPackager
             OutputPackageJson(exportUrl, json);
 
             // ================================================================
-            // プロジェクトのデータコピー＆ゲームタイトル変更
+            // プロジェクトのデータコピー＆コンフィグ変更
             // ================================================================
             CopyAndReplace(Path.Combine(projectUrl, "data"), Path.Combine(exportUrl, "data"));
-            if (reflectIdToGameTitle) ReplaceStringInFile(Path.Combine(exportUrl, @"data\system\Config.tjs"), ";System.title = .+", ";System.title = \"" + id + "\";");
+
+            if (reflectIdToGameTitle)
+            {
+                // ゲームタイトル変更
+                ReplaceStringInFile(Path.Combine(exportUrl, @"data\system\Config.tjs"), ";System.title = .+", ";System.title = \"" + id + "\";");
+            }
+            if (projectId != null)
+            {
+                // プロジェクトID変更
+                ReplaceStringInFile(Path.Combine(exportUrl, @"data\system\Config.tjs"), ";projectID = .+", ";projectID = " + projectId + ";");
+            }
             
             // ================================================================
             // プロジェクトのZIPファイル作成

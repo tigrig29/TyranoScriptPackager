@@ -178,5 +178,29 @@ namespace TyranoScriptPackager.Properties {
                 this["reflect_id_to_game_title"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int combo_project_id {
+            get {
+                return ((int)(this["combo_project_id"]));
+            }
+            set {
+                this["combo_project_id"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string project_id {
+            get {
+                return ((string)(this["project_id"]));
+            }
+            set {
+                this["project_id"] = value;
+            }
+        }
     }
 }
