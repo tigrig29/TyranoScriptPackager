@@ -294,7 +294,10 @@ namespace TyranoScriptPackager
                 // プロジェクトID変更
                 ReplaceStringInFile(Path.Combine(exportUrl, @"data\system\Config.tjs"), ";projectID = .+", ";projectID = " + projectId + ";");
             }
-            
+
+            // デバッグメニュー強制非表示
+            ReplaceStringInFile(Path.Combine(exportUrl, @"data\system\Config.tjs"), ";debugMenu.visible = .+", ";debugMenu.visible = false;");
+
             // ================================================================
             // プロジェクトのZIPファイル作成
             // ================================================================
